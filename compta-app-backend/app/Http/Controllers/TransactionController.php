@@ -11,11 +11,14 @@ class TransactionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(Cors::class);
     }
     public function getAllTransactions()
     {
-        $transactions = Transaction::all();
-        return response()->json($transactions);
+        try {
+            $transactions = Transaction::all();
+            return response()->json($transactions, 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to fetch transactions'], 500);
+        }
     }
 }
