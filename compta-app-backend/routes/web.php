@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware([Cors::class])->group(function () {
 
     Route::get('/getTransactions', [TransactionController::class, 'getAllTransactions']);
+    Route::get('/getTransactionsAtDate', [TransactionController::class, 'getTransactionsAtDate']);
 
 
 });
