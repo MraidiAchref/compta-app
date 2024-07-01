@@ -26,6 +26,18 @@ export default function ManualReconsiliationPage() {
     console.log(checkedData);
   }, [checkedData]);
 
+  const handlePrint = () => {
+    const printableElement = document.getElementById(
+      "gap-calculator-container"
+    );
+    const originalContents = document.body.innerHTML;
+    const printContents = printableElement.innerHTML;
+
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+  };
+
   return (
     <div>
       <div className="tables-wrapper">
@@ -41,13 +53,16 @@ export default function ManualReconsiliationPage() {
           updateTotalsBank={updateTotalsBank}
         />
       </div>
-      <ReconciliationGap
-        totalDebitCompta={totalDebitCompta}
-        totalCreditCompta={totalCreditCompta}
-        totalDebitBank={totalDebitBank}
-        totalCreditBank={totalCreditBank}
-        tableData={checkedData}
-      />
+      <div id="gap-calculator-container">
+        <ReconciliationGap
+          totalDebitCompta={totalDebitCompta}
+          totalCreditCompta={totalCreditCompta}
+          totalDebitBank={totalDebitBank}
+          totalCreditBank={totalCreditBank}
+          tableData={checkedData}
+        />
+      </div>
+      <button onClick={handlePrint}>Imprimer</button>
     </div>
   );
 }
