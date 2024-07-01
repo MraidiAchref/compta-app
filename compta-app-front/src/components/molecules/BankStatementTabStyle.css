@@ -1,0 +1,53 @@
+
+.component-container{
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+}
+.component-container>label{
+  margin: 20px auto;
+}
+.component-container>input{
+  margin: 20px auto;
+}
+#csv-file-loader-label{
+  font-weight:bold;
+  padding: 0px;
+  margin: 0px;
+}
+
+.table-container {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .table-container th,
+  .table-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .table-container th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .table-container tbody tr:nth-child(even) {
+    background-color: #e8e8e8;
+  }
+  
+  .table-container tbody tr.table-row-selected {
+    background-color: lightblue; 
+  }
+  .table-container tbody tr:hover {
+    background-color: #e9e9e9;
+  }
+
+
+ 
+  
+  

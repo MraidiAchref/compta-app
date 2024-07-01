@@ -1,0 +1,14 @@
+.reconciliation-gap-container > label {
+  font-weight: bold;
+  font-size: large;
+  
+}
+
+.reconciliation-gap-container {
+  border-style: groove;
+  width: 80%;
+  margin: 50px auto;
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+}
