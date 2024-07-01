@@ -46,6 +46,7 @@ export default function ManualReconsiliationPage() {
         totalCreditCompta={totalCreditCompta}
         totalDebitBank={totalDebitBank}
         totalCreditBank={totalCreditBank}
+        tableData={checkedData}
       />
     </div>
   );
