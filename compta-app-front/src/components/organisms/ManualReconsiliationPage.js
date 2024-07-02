@@ -3,7 +3,7 @@ import "./ManualReconsiliationPageStyle.css";
 import ComptaTab from "../molecules/ComptaTab";
 import BankStatementTab from "../molecules/BankStatementTab";
 import ReconciliationGap from "../atoms/ReconciliationGap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function ManualReconsiliationPage() {
   const [totalDebitCompta, setTotalDebitCompta] = useState(0);
@@ -21,22 +21,20 @@ export default function ManualReconsiliationPage() {
   };
 
   const [checkedData, setcheckedData] = useState([]);
-
-  useEffect(() => {
-    console.log(checkedData);
-  }, [checkedData]);
+  const printableRef = useRef(null); 
 
   const handlePrint = () => {
-    const printableElement = document.getElementById(
-      "gap-calculator-container"
-    );
-    const originalContents = document.body.innerHTML;
-    const printContents = printableElement.innerHTML;
+    const currentHTML = document.documentElement.outerHTML;
 
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
-  };
+    const newWindow = window.open('', '_blank');
+      newWindow.document.open();
+      newWindow.document.write(currentHTML);
+      newWindow.document.body.innerHTML = document.getElementById('gap-calculator-container').innerHTML;
+      newWindow.print();
+
+    } 
+
+  
 
   return (
     <div>
@@ -53,7 +51,7 @@ export default function ManualReconsiliationPage() {
           updateTotalsBank={updateTotalsBank}
         />
       </div>
-      <div id="gap-calculator-container">
+      <div id="gap-calculator-container" ref={printableRef}>
         <ReconciliationGap
           totalDebitCompta={totalDebitCompta}
           totalCreditCompta={totalCreditCompta}

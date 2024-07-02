@@ -68,6 +68,28 @@ export default function BankStatementTab({totalDebitBank,totalCreditBank,updateT
 
   }, [data]);
 
+  const [doubleClickedRowIds, setDoubleClickedRowIds] = useState([]);
+
+  const handleDoubleClick = (rowId) => {
+    if (doubleClickedRowIds.includes(rowId)){
+      let newArray= doubleClickedRowIds.filter((id)=>id !== rowId) ;
+      setDoubleClickedRowIds(newArray);
+    }else {
+      setDoubleClickedRowIds([...doubleClickedRowIds, rowId]);
+    }
+  };
+
+  const [searchInputValue,setSearchInputValue] = useState(null) ;
+  const handleTypingInInput= (event)=> {
+    const textTyped = event.target.value.toLowerCase() ;
+
+    if (textTyped ===""){
+      setSearchInputValue(null) ;
+    }else {
+      setSearchInputValue(textTyped) ;
+    }
+  }
+
   return (
     <div>
       <div className="component-container">
@@ -93,13 +115,18 @@ export default function BankStatementTab({totalDebitBank,totalCreditBank,updateT
               </thead>
               <tbody>
                 {data.map((row) => (
-                  <tr key={row.ID}>
-                    <td>{row.Date}</td>
-                    <td>{row.Description}</td>
-                    <td>{row.Credit}</td>
-                    <td>{row.Debit}</td>
+                  <tr key={row.ID}  onDoubleClick={() => handleDoubleClick(row.ID)} style={{backgroundColor: doubleClickedRowIds.includes(row.ID)  ? 'green' : 'inherit',}}>
+                    <td style={{backgroundColor:  row.Date.toLowerCase().includes(searchInputValue) ? 'yellow' : 'inherit',}}>{row.Date}</td>
+                    <td style={{backgroundColor:  row.Description.toLowerCase().includes(searchInputValue)  ? 'yellow' : 'inherit',}}>{row.Description}</td>
+                    <td style={{backgroundColor:  row.Credit.toLowerCase().includes(searchInputValue)  ? 'yellow' : 'inherit',}}>{row.Credit}</td>
+                    <td style={{backgroundColor:   row.Debit.toLowerCase().includes(searchInputValue)?  'yellow' : 'inherit',}}>{row.Debit}</td>
                   </tr>
                 ))}
+                  <tr >
+                    <td>Recherche </td>
+                    <td  colSpan="3" onChange={handleTypingInInput}><input  type="text" id="input-seach-bar"/> </td>
+
+                  </tr>
               </tbody>
               <tfoot>
               <tr>

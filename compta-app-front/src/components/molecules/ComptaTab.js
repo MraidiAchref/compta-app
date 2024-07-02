@@ -70,6 +70,13 @@ export default function ComptaTab({totalDebitCompta,totalCreditCompta,updateTota
       creditTotal += transaction.Credit;
     });
     updateTotalsCompta(debitTotal, creditTotal);
+
+    let checkedData = [] ;
+    mappedTransactions.forEach((row) => {
+      if(!row.Checked) checkedData.push(row) ;
+    })
+    setcheckedData(checkedData) ;
+
   }, [fetchedData]);
 
 
@@ -79,7 +86,6 @@ export default function ComptaTab({totalDebitCompta,totalCreditCompta,updateTota
 
 
 
-  let checkedData = [] ;
   const handleCheckboxChange = (id) => {
     const updatedData = data.map((row) => {
       //console.log(row);
@@ -90,10 +96,12 @@ export default function ComptaTab({totalDebitCompta,totalCreditCompta,updateTota
       return row;
     });
     setData(updatedData);
+    let checkedData = [] ;
     updatedData.forEach((row) => {
-      if(row.Checked) checkedData.push(row) ;
+      if(!row.Checked) checkedData.push(row) ;
     })
     setcheckedData(checkedData) ;
+
   };
 
   return (

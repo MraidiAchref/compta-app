@@ -12,8 +12,8 @@ export default function ReconciliationGap({totalDebitCompta,totalCreditCompta,to
                 <tr>
                   <th>Date</th>
                   <th>Libéllé</th>
-                  <th>Crédit</th>
                   <th>Débit</th>
+                  <th>Crédit</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,8 +21,8 @@ export default function ReconciliationGap({totalDebitCompta,totalCreditCompta,to
                   <tr key={row.ID}>
                     <td>{row.Date}</td>
                     <td>{row.Description}</td>
-                    <td>{row.Credit}</td>
                     <td>{row.Debit}</td>
+                    <td>{row.Credit}</td>
                   </tr>
                 ))}
             </tbody>
