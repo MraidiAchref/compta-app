@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners"; 
 
 
-export default function BankStatementTab({totalDebitBank,totalCreditBank,updateTotalsBank}) {
+export default function BankStatementTab({totalDebitBank,totalCreditBank,updateTotalsBank,setCheckedBankStatementData_Ids,setBankStatementData}) {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -65,7 +65,7 @@ export default function BankStatementTab({totalDebitBank,totalCreditBank,updateT
       if (parseFloat(row.Credit)) {creditTotal += parseFloat(row.Credit)};
     });
     updateTotalsBank(debitTotal, creditTotal);
-
+    setBankStatementData(data);
   }, [data]);
 
   const [doubleClickedRowIds, setDoubleClickedRowIds] = useState([]);
@@ -74,8 +74,10 @@ export default function BankStatementTab({totalDebitBank,totalCreditBank,updateT
     if (doubleClickedRowIds.includes(rowId)){
       let newArray= doubleClickedRowIds.filter((id)=>id !== rowId) ;
       setDoubleClickedRowIds(newArray);
+      setCheckedBankStatementData_Ids(newArray);
     }else {
       setDoubleClickedRowIds([...doubleClickedRowIds, rowId]);
+      setCheckedBankStatementData_Ids([...doubleClickedRowIds, rowId]);
     }
   };
 

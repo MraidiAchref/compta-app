@@ -14,9 +14,14 @@
 
 }
 .labels-container{
-  margin: 50px 20px 0px 50px;
+  margin: 0px 20px 40px 50px;
   display: flex;
   padding: 20px;
   padding-bottom: 0px;
   justify-content: space-between;
+}
+.subtitle {
+  font-weight: bold;
+  text-align: center;  
+  background-color: #9e9d9d; 
 }

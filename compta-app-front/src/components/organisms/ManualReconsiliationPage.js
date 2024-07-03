@@ -20,6 +20,10 @@ export default function ManualReconsiliationPage() {
     setTotalCreditBank(creditTotal);
   };
 
+  const [bankStatementData, setBankStatementData] = useState([]) ;
+  const [checkedBankStatementData_Ids, setCheckedBankStatementData_Ids] = useState([]) ;
+  
+
   const [checkedData, setcheckedData] = useState([]);
   const printableRef = useRef(null); 
 
@@ -29,9 +33,9 @@ export default function ManualReconsiliationPage() {
     const newWindow = window.open('', '_blank');
       newWindow.document.open();
       newWindow.document.write(currentHTML);
-      newWindow.document.body.innerHTML = document.getElementById('gap-calculator-container').innerHTML;
+      newWindow.document.body.innerHTML = printableRef.current.innerHTML;
       newWindow.print();
-
+      newWindow.close();
     } 
 
   
@@ -49,6 +53,8 @@ export default function ManualReconsiliationPage() {
           totalDebitBank={totalDebitBank}
           totalCreditBank={totalCreditBank}
           updateTotalsBank={updateTotalsBank}
+          setCheckedBankStatementData_Ids={setCheckedBankStatementData_Ids}
+          setBankStatementData={setBankStatementData}
         />
       </div>
       <div id="gap-calculator-container" ref={printableRef}>
@@ -58,6 +64,8 @@ export default function ManualReconsiliationPage() {
           totalDebitBank={totalDebitBank}
           totalCreditBank={totalCreditBank}
           tableData={checkedData}
+          bankStatementData={bankStatementData}
+          checkedBankStatementData_Ids={checkedBankStatementData_Ids}
         />
       </div>
       <button onClick={handlePrint}>Imprimer</button>
