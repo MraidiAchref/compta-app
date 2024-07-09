@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners"; 
 
 
-export default function BankStatementTab({totalDebitBank,totalCreditBank,updateTotalsBank,setCheckedBankStatementData_Ids,setBankStatementData}) {
+export default function BankStatementTab({totalDebitBank,totalCreditBank,updateTotalsBank,setCheckedBankStatementData_Ids,setBankStatementData, bankStatementData
+}) {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -41,7 +42,7 @@ export default function BankStatementTab({totalDebitBank,totalCreditBank,updateT
         header: true,
         skipEmptyLines: true,
         complete: (result) => {
-          setData(result.data);
+          setBankStatementData(result.data);
           setIsProcessing(false);
         },
         error: (err) => {
@@ -60,13 +61,14 @@ export default function BankStatementTab({totalDebitBank,totalCreditBank,updateT
   useEffect(() => {
     let debitTotal = 0;
     let creditTotal = 0;
-    data.forEach((row) => {
+    bankStatementData.forEach((row) => {
       if (parseFloat(row.Debit)) {debitTotal += parseFloat(row.Debit)};
       if (parseFloat(row.Credit)) {creditTotal += parseFloat(row.Credit)};
     });
     updateTotalsBank(debitTotal, creditTotal);
-    setBankStatementData(data);
-  }, [data]);
+    //setBankStatementData(bankStatementData);
+    
+  }, [bankStatementData]);
 
   const [doubleClickedRowIds, setDoubleClickedRowIds] = useState([]);
 
@@ -116,12 +118,12 @@ export default function BankStatementTab({totalDebitBank,totalCreditBank,updateT
                 </tr>
               </thead>
               <tbody>
-                {data.map((row) => (
+                {bankStatementData.map((row) => (
                   <tr key={row.ID}  onDoubleClick={() => handleDoubleClick(row.ID)} style={{backgroundColor: doubleClickedRowIds.includes(row.ID)  ? 'green' : 'inherit',}}>
                     <td style={{backgroundColor:  row.Date.toLowerCase().includes(searchInputValue) ? 'yellow' : 'inherit',}}>{row.Date}</td>
                     <td style={{backgroundColor:  row.Description.toLowerCase().includes(searchInputValue)  ? 'yellow' : 'inherit',}}>{row.Description}</td>
-                    <td style={{backgroundColor:  row.Credit.toLowerCase().includes(searchInputValue)  ? 'yellow' : 'inherit',}}>{row.Credit}</td>
-                    <td style={{backgroundColor:   row.Debit.toLowerCase().includes(searchInputValue)?  'yellow' : 'inherit',}}>{row.Debit}</td>
+                    <td style={{backgroundColor:  row.Credit.toString().toLowerCase().includes(searchInputValue)  ? 'yellow' : 'inherit',}}>{row.Credit}</td>
+                    <td style={{backgroundColor:   row.Debit.toString().toLowerCase().includes(searchInputValue)?  'yellow' : 'inherit',}}>{row.Debit}</td>
                   </tr>
                 ))}
                   <tr >
