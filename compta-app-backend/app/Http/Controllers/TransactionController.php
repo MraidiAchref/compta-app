@@ -25,12 +25,13 @@ class TransactionController extends Controller
 
     public function getTransactionsAtDate(Request $request){
         try {
-            $date = $request->input('date');
+            $endDate = $request->input('endDate');
+            $startDate = $request->input('startDate');
 
-
-            $startDate = date('Y-m-01', strtotime($date)); 
            // Log::info('End Date: ' . $endDate);
-            $transactions = Transaction::whereBetween('Date', [$startDate, $date])->get();
+            $transactions = Transaction::whereBetween('Date', [$startDate, $endDate])
+                                                                ->orderBy('Date', 'asc')
+                                                                ->get();
 
             return response()->json($transactions, 200);
         } catch (\Exception $e) {

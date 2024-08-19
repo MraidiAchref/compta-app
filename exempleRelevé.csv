@@ -1,0 +1,18 @@
+ID,Date,Description,Debit,Credit
+1,2024-07-01,Virement client X,0,15000.00
+16,2024-07-01,COMMISSION VIR AUT AG 002456,1.7,0
+2,2024-07-03,Achat de fournitures de bureau,2500.00,0
+3,2024-07-05,Paiement salaire employés,10000.00,0
+4,2024-07-07,Paiement facture électricité,800.00,0
+5,2024-07-10,Paiement facture SONEDE,450.00,0
+6,2024-07-12,Remboursement prêt bancaire,5000.00,0
+7,2024-07-15,Encaissement client Y,0,25000.00
+18,2024-07-15,COMMISSION ENC CHQ,1.321,0
+8,2024-07-17,Paiement fournisseur matériel informatique,8000.00,0
+9,2024-07-20,Dépôt chèque,0,7500.00
+10,2024-07-22,Virement vers compte épargne,5000.00,0
+11,2024-07-24,Paiement frais de déplacement,1200.00,0
+12,2024-07-26,Encaissement client Z,0,10000.00
+17,2024-07-26,COMMISSION ENC CHQ,1.321,0
+13,2024-07-28,Paiement assurance,2000.00,0
+14,2024-07-30,Retrait pour frais divers,1500.00,0
