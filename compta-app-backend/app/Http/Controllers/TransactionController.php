@@ -30,7 +30,7 @@ class TransactionController extends Controller
 
            // Log::info('End Date: ' . $endDate);
             $transactions = Transaction::whereBetween('Date', [$startDate, $endDate])
-                                                                ->orderBy('Date', 'asc')
+                                                           ->orderBy('Date', 'asc')
                                                                 ->get();
 
             return response()->json($transactions, 200);
