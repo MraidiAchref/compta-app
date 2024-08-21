@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\BankStatementController;
 use App\Http\Middleware\Cors;
 
 
@@ -32,6 +33,8 @@ Route::middleware([Cors::class])->group(function () {
 
     Route::get('/getTransactions', [TransactionController::class, 'getAllTransactions']);
     Route::get('/getTransactionsAtDate', [TransactionController::class, 'getTransactionsAtDate']);
+    Route::get('/getSavedBanks', [BankStatementController::class, 'getSavedBanks']);
+    Route::get('/getBankStatmentBetweenDateAtBank', [BankStatementController::class, 'getBankStatmentBetweenDateAtBank']);
 
 
 });
